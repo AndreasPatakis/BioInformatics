@@ -55,5 +55,5 @@ winner = int(init_state in losing) + 1
 
 # print(f'\nWINNING STATES: {winning}')
 # print(f'\nLOSING STATES: {losing}')
-print(f"\nPlayer {winner} wins in {moves} moves!")
-print(f"Total moves: {2*(moves-1) + winner}")
+print(f"\nPlayer {winner} wins in {moves + 1 - winner} moves!")
+print(f"\nTotal moves: {2 * moves + 1 - winner}")
