@@ -3,11 +3,11 @@
 
 n,m
 
-* The player that is left without nucleotides loses
-
-* Losing state comes from a winning state
+* The player that is left without nucleotides wins
 
 * Winning state comes from a losing state
+
+* Losing state comes from a winning state
 '''
 import numpy as np
 
@@ -17,10 +17,10 @@ n = int(input('Insert n: '))
 init_state = sorted([m,n])
 
 # The max length that a sequence can have when the game ends
-MAX_LOSING_SEQUENCE_LENGTH = init_state[1] - (init_state[0] // 2 + 2 * (init_state[0] % 2))
+MAX_WINNING_SEQUENCE_LENGTH = init_state[1] - (init_state[0] // 2 + 2 * (init_state[0] % 2))
 
-losing = [[1,1]] + [[0,i] for i in range(MAX_LOSING_SEQUENCE_LENGTH + 1)]
-winning = []
+winning = [[1,1]] + [[0,i] for i in range(MAX_WINNING_SEQUENCE_LENGTH + 1)]
+losing = []
 moves = 0
 
 def unchecked_state(state):
@@ -43,11 +43,11 @@ def get_next_states(current_states, next_states):
         next_states.extend(filter(unchecked_state, new_states))
 
 # Bottom up dynamic programming
-# Start from the final losing states
+# Start from the final winning states
 # and build up to the initial state
 while unchecked_state(init_state):
-    get_next_states(losing, winning)
     get_next_states(winning, losing)
+    get_next_states(losing, winning)
     moves += 1
 
 # 1 if the 1st player wins and 2 if the 2nd player wins
