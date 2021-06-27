@@ -1,16 +1,9 @@
 '''
 6.14
-
-n,m
-
 * The player that is left without nucleotides wins
-
 * Winning state comes from a losing state
-
 * Losing state comes from a winning state
 '''
-import numpy as np
-
 m = int(input('Insert m: '))
 n = int(input('Insert n: '))
 
@@ -37,8 +30,11 @@ def get_next_states(current_states, next_states):
     '''
     for state in current_states:
         # Find new states
-        new_states = [sorted(list(np.array(state) + [1,2])), sorted(list(np.array(state) + [2,1]))]
-        
+        new_states = [
+            sorted([state[0] + 1, state[1] + 2]), 
+            sorted([state[0] + 2, state[1] + 1])
+        ]
+ 
         # Add only the unchecked states
         next_states.extend(filter(unchecked_state, new_states))
 
