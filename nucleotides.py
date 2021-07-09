@@ -49,7 +49,7 @@ while unchecked_state(init_state):
 # 1 if the 1st player wins and 2 if the 2nd player wins
 winner = int(init_state in losing) + 1
 
-# print(f'\nWINNING STATES: {winning}')
-# print(f'\nLOSING STATES: {losing}')
+print(f'\nWINNING STATES: {winning}')
+print(f'\nLOSING STATES: {losing}')
 print(f"\nPlayer {winner} wins in {moves + 1 - winner} moves!")
 print(f"\nTotal moves: {2 * moves + 1 - winner}")
